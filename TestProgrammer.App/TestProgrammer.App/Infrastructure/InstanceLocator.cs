@@ -17,5 +17,6 @@ namespace TestProgrammer.App.Infrastructure
             this.Main = new MainViewModel();
         }
         #endregion
+
     }
 }
