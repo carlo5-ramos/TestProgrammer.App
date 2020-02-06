@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestProgrammer.App.Views.EmployeesPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BindingContext="{Binding Employees}"
+                         Padding="5,10">
+                <Label TextColor="Black"
+                       Text="Employees List"
+                       VerticalOptions="Center"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label FontAttributes="Bold"
+                           Text="ID"
+                           Grid.Column="0"/>
+                    <Label FontAttributes="Bold"
+                           Text="Name"
+                           Grid.Column="1"/>
+                    <Label FontAttributes="Bold"
+                           Text="Position"
+                           Grid.Column="2"/>
+                    <Label FontAttributes="Bold"
+                           Text="Profile"
+                           Grid.Column="3"/>
+                    <ListView Grid.Row="1"
+                              HasUnevenRows="True"
+                              IsRefreshing="{Binding IsRefreshing}"
+                              ItemsSource="{Binding Employees}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Label Grid.Column="0"
+                                               Text="{Binding EmployeeID}"/>
+                                        <Label Grid.Column="1"
+                                               Text="{Binding EmployeeName}"/>
+                                        <Label Grid.Column="2"
+                                               Text="{Binding PositionID}"/>
+                                        <Label Grid.Column="3"
+                                               Text="{Binding ProfileID}"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
