@@ -53,9 +53,9 @@ namespace TestProgrammer.App.ViewModels
             }
 
             var response = await this.apiService.GetList<Employees>(
-                "http://localhost:54091/",
+                "http://testunit-001-site1.ctempurl.com",
                 "/api",
-                "/Employees");
+                "/API_Employees");
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;

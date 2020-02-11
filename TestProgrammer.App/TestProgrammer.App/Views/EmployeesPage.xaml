@@ -4,22 +4,74 @@
              x:Class="TestProgrammer.App.Views.EmployeesPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <ContentPage.Content>
-        <ScrollView>
+        <StackLayout>
+            <StackLayout >
+                <Label FontAttributes="Bold"
+                       FontSize="Title" 
+                       Text="Split Mount"/>
+                <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand">
+                    <Label Text="Amount to split: "
+                       TextColor="Black"
+                       VerticalOptions="Center"/>
+                    <Entry BackgroundColor="White"
+                       Text="{Binding Dividendo, Mode=TwoWay}"
+                       TextColor="White"
+                       VerticalOptions="Center"/>
+                </StackLayout>
+                <Grid BackgroundColor="#0389ff"
+                  HorizontalOptions="CenterAndExpand"
+                  Margin="20,10"
+                  Padding="10, 7">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button BackgroundColor="#0389ff"
+                        FontAttributes="Bold"
+                        FontSize="Title"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="-"
+                        TextColor="White"/>
+                    <Entry BackgroundColor="White" 
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           Text="{Binding Divisor, Mode=TwoWay}"  />
+                    <Button BackgroundColor="#0389ff"
+                            FontAttributes="Bold"
+                            FontSize="Title"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Text="+"
+                            TextColor="White"/>
+                    <Entry HorizontalOptions="Center"   
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           Text="{Binding Resultado, StringFormat='$ {0}', Mode=TwoWay}"
+                           TextColor="White"/>
+                </Grid>
+
+            </StackLayout>
+
             <StackLayout BindingContext="{Binding Employees}"
                          Padding="5,10">
-                <Label TextColor="Black"
-                       Text="Employees List"
-                       VerticalOptions="Center"/>
-                <Grid>
+                <Label FontAttributes="Bold"
+                       FontSize="Title"
+                       Text="List Employees"/>
+                <Grid BackgroundColor="GreenYellow" RowSpacing="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
                     <Label FontAttributes="Bold"
                            Text="ID"
                            Grid.Column="0"/>
@@ -32,37 +84,39 @@
                     <Label FontAttributes="Bold"
                            Text="Profile"
                            Grid.Column="3"/>
-                    <ListView Grid.Row="1"
-                              HasUnevenRows="True"
-                              IsRefreshing="{Binding IsRefreshing}"
-                              ItemsSource="{Binding Employees}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        
-                                        <Label Grid.Column="0"
-                                               Text="{Binding EmployeeID}"/>
-                                        <Label Grid.Column="1"
-                                               Text="{Binding EmployeeName}"/>
-                                        <Label Grid.Column="2"
-                                               Text="{Binding PositionID}"/>
-                                        <Label Grid.Column="3"
-                                               Text="{Binding ProfileID}"/>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
                 </Grid>
-                
+                <ListView Grid.Row="1"
+                          HasUnevenRows="True"
+                           IsRefreshing="{Binding IsRefreshing}"
+                            ItemsSource="{Binding Employees}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Column="0"
+                                               Text="{Binding EmployeeID}"/>
+                                    <Label Grid.Column="1"
+                                               Text="{Binding EmployeeName}"/>
+                                    <Label Grid.Column="2"
+                                               Text="{Binding PositionID}"/>
+                                    <Label Grid.Column="3"
+                                               Text="{Binding ProfileID}"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
             </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
