@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="16.1.0.37" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="16.1.0.37" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991640" />
   </ItemGroup>

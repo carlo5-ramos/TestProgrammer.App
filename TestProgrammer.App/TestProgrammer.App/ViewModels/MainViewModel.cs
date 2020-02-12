@@ -7,9 +7,11 @@ namespace TestProgrammer.App.ViewModels
     public class MainViewModel
     {
         #region Properties
+        public EmployeesViewModel Split { get; set; }
+
         public EmployeesViewModel Employees { get; set; }
 
-        public EmployeesViewModel Split { get; set; }
+        
         #endregion
 
         #region Constructors

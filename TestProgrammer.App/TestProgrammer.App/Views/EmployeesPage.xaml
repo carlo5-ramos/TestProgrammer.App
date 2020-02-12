@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:busyIndicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="TestProgrammer.App.Views.EmployeesPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <ContentPage.Content>
         <ScrollView >
             <StackLayout>
-                <StackLayout BindingContext="{Binding Split}">
+                <StackLayout BindingContext="{Binding Split}"
+                             Margin="10">
                     <Label FontAttributes="Bold"
                            FontSize="Title" 
                            Text="Split Mount"/>
@@ -15,6 +18,7 @@
                         <Label Text="Amount to split: "
                                TextColor="Black"
                                VerticalOptions="Center"/>
+                        
                         <Entry BackgroundColor="White"
                            Keyboard="Numeric"
                            Text="{Binding Dividendo, Mode=TwoWay}"
@@ -22,50 +26,23 @@
                            VerticalOptions="Center"
                            WidthRequest="50"/>
                     </StackLayout>
-                    <Grid BackgroundColor="#0389ff"
-                          HorizontalOptions="CenterAndExpand"
-                          Margin="20,10"
-                          Padding="20,10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button BackgroundColor="#0389ff"
-                                FontAttributes="Bold"
-                                FontSize="Title"
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Text="-"
-                                TextColor="White"/>
-                        <Entry BackgroundColor="White" 
-                               Grid.Row="0"
-                               Grid.Column="1"
-                               Keyboard="Numeric"
-                               Text="{Binding Divisor, Mode=TwoWay}"  
-                               TextColor="Black"/>
-                        <Button BackgroundColor="#0389ff"
-                                FontAttributes="Bold"
-                                FontSize="Title"
-                                Grid.Row="0"
-                                Grid.Column="2"
-                                Text="+"
-                                TextColor="White"/>
-                        <Entry Grid.Row="1"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="3"
-                           HorizontalOptions="Center"
-                           Placeholder="$  0.0"
-                           PlaceholderColor="Black"
-                           Text="{Binding Resultado, StringFormat='$ {0}', Mode=TwoWay}"
-                           TextColor="Black"
-                           WidthRequest="50"/>
-                    </Grid>
+                    <StackLayout BackgroundColor="#33b1ff"
+                                 Padding="20,30">
+                        <numeric:SfNumericUpDown BackgroundColor="White"
+                                                 HorizontalOptions="Center"
+                                                 MaximumDecimalDigits="2"
+                                                 SpinButtonAlignment="Both"
+                                                 TextAlignment="Center"
+                                                 Value="{Binding Divisor, Mode=TwoWay}"
+                                                 WidthRequest="90"
+                                                 x:Name="numericUpDown" />
 
+                        <Entry  HorizontalOptions="Center"
+                                Placeholder="$  0.0"
+                                PlaceholderColor="Black"
+                                Text="{Binding Resultado, StringFormat='$ {0}', Mode=TwoWay}"
+                                TextColor="Black"/>
+                    </StackLayout>
                 </StackLayout>
 
                 <StackLayout BindingContext="{Binding Employees}"
@@ -74,8 +51,9 @@
                     <Label FontAttributes="Bold"
                        FontSize="Title"
                        Text="List Employees"/>
-                    <Grid BackgroundColor="GreenYellow"
-                          ColumnSpacing="1">
+                    <Grid BackgroundColor="#33ff74"
+                          ColumnSpacing="2"                       
+                          RowSpacing="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -114,9 +92,13 @@
                                VerticalOptions="Center"/>
 
                     </Grid>
+                    <busyIndicator:SfBusyIndicator x:Name="busyIndicator"
+                                               IsBusy="{Binding IsRefreshing}"
+                                               IsVisible="{Binding IsRefreshing}"/>
                     <ListView HasUnevenRows="True"
-                          IsRefreshing="{Binding IsRefreshing}"
-                          ItemsSource="{Binding Employees}">
+                          ItemsSource="{Binding Employees}"
+                              IsRefreshing="{DynamicResource Key=busyIndicator}">
+                        
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -127,7 +109,7 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-
+                                        
                                         <Label Grid.Column="0"
                                            HorizontalOptions="Center"
                                            Text="{Binding EmployeeID}"/>

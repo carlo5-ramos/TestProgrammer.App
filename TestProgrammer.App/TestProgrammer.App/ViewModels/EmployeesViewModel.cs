@@ -15,6 +15,8 @@ namespace TestProgrammer.App.ViewModels
         private ApiService apiService;
         private bool isRefreshing;
         private ObservableCollection<Employees> employees;
+        private ObservableCollection<Positions> positions;
+        private ObservableCollection<Profiles> profiles;
         #endregion
 
         #region Properties
@@ -22,6 +24,18 @@ namespace TestProgrammer.App.ViewModels
         {
             get { return this.employees; }
             set { this.SetValue(ref this.employees, value); }
+        }
+
+        public ObservableCollection<Positions> Positions
+        {
+            get { return this.positions; }
+            set { this.SetValue(ref this.positions, value); }
+        }
+
+        public ObservableCollection<Profiles> Profiles
+        {
+            get { return this.profiles; }
+            set { this.SetValue(ref this.profiles, value); }
         }
 
         public bool IsRefreshing
@@ -90,6 +104,7 @@ namespace TestProgrammer.App.ViewModels
             Resultado = Dividendo / Divisor;
         }
 
+
         private async void LoadEmployees()
         {
             var connection = await this.apiService.CheckConnection();
@@ -101,9 +116,9 @@ namespace TestProgrammer.App.ViewModels
             }
 
             var response = await this.apiService.GetList<Employees>(
-                "http://testunit-001-site1.ctempurl.com",
+                "http://atest1234-001-site1.htempurl.com/",
                 "/api",
-                "/API_Employees");
+                "/EmployeesApi");
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;
