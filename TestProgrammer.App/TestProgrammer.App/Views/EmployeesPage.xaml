@@ -27,14 +27,15 @@
                            WidthRequest="50"/>
                     </StackLayout>
                     <StackLayout BackgroundColor="#33b1ff"
-                                 Padding="20,30">
+                                 Padding="10,30"
+                                 Margin="30,0">
                         <numeric:SfNumericUpDown BackgroundColor="White"
                                                  HorizontalOptions="Center"
                                                  MaximumDecimalDigits="2"
                                                  SpinButtonAlignment="Both"
                                                  TextAlignment="Center"
                                                  Value="{Binding Divisor, Mode=TwoWay}"
-                                                 WidthRequest="90"
+                                                 WidthRequest="150"
                                                  x:Name="numericUpDown" />
 
                         <Entry  HorizontalOptions="Center"
