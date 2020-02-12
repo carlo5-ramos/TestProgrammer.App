@@ -8,12 +8,15 @@ namespace TestProgrammer.App.ViewModels
     {
         #region Properties
         public EmployeesViewModel Employees { get; set; }
+
+        public EmployeesViewModel Split { get; set; }
         #endregion
 
         #region Constructors
         public MainViewModel()
         {
             this.Employees = new EmployeesViewModel();
+            this.Split = new EmployeesViewModel();
         }
         #endregion
     }
